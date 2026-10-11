@@ -85,8 +85,8 @@ test('hooks use the cross-platform runner command', () => {
   const commands = [hooks.PreInvocation[0].command, hooks.PostToolUse[0].hooks[0].command];
 
   assert.deepEqual(commands, [
-    'scripts\\run.cmd --event=preInvocation 2>nul || scripts/run --event=preInvocation',
-    'scripts\\run.cmd --event=postToolUse 2>nul || scripts/run --event=postToolUse',
+    'scripts\\run.cmd --event=preInvocation || scripts/run --event=preInvocation 2>nul',
+    'scripts\\run.cmd --event=postToolUse || scripts/run --event=postToolUse 2>nul',
   ]);
   assert.ok(fs.existsSync(path.resolve(__dirname, '..', 'scripts', 'run')));
   assert.ok(fs.existsSync(path.resolve(__dirname, '..', 'scripts', 'run.cmd')));
